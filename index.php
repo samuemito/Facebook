@@ -1,7 +1,14 @@
+<?php
+session_start();
+if(isset($_SESSION['logado'])) {
+	echo "Você está logado";
+	unset($_SESSION['logado']);
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Facebook - Entrar & Registrar</title>
+	<title>Facebook - entre ou cadastre-se</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/index.css">
 	<link rel="shortcut icon" href="assets/images/logo.ico" type="image/x-icon" />
 </head>
@@ -11,7 +18,7 @@
 		<div id="login">
 			<div id="form">
 				<ul>
-					<form method="POST">
+					<form method="POST" action="backend/login.php">
 						<li style="margin-left: 12px !important;">
 							Email ou telefone
 						</li>
@@ -19,8 +26,8 @@
 							Senha
 						</li>
 						<br/>
-						<input type="text" name="em">
-						<input type="password" name="sn">
+						<input type="text" name="emaill">
+						<input type="password" name="senhal">
 						<input type="submit" name="Entrar" placeholder="Entrar" value="Entrar" id="button">
 						<p id="esq">
 							Esqueceu a conta?
@@ -62,6 +69,8 @@
 				>
 					<form
 						id="registrarse"
+						method="POST"
+						action="backend/registrar.php"
 					>
 						<div
 							id="forms"

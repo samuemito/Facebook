@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'LeviBrush';
+    src: url('LeviBrush.woff2') format('woff2'),
+        url('LeviBrush.woff') format('woff'),
+        url('LeviBrush.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Puri';
+    src: url('Purisa.woff2') format('woff2'),
+        url('Purisa.woff') format('woff'),
+        url('Purisa.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

@@ -75,14 +75,14 @@
 	color: #446;
 }
 #redeimg {
-	margin-left: -10px;
+	margin-left: -20px !important;
 }
 #rede {
 	position: relative;
 	top: 55px;
 	width: 30%;
 	float: left;
-	margin-left: 14%;
+	margin-left: 9%;
 }
 #container {
 	position: relative;
@@ -173,7 +173,6 @@ input:focus, select:focus {
 	margin-top: -3px;
 	font-family: 'Roboto';
 }
-
 #outro {
 	margin-left: 8px;
 }
