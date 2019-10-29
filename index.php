@@ -1,42 +1,282 @@
 <?php
 session_start();
-if(isset($_SESSION['logado'])) {
-	echo "Você está logado";
-	unset($_SESSION['logado']);
-}
+require 'bd.php';
+if(isset($_SESSION['logado'])):
+$infos = "SELECT * FROM users WHERE Email = :email";
+$infos = $pdo->prepare($infos);
+$infos->bindValue(":email", $_SESSION['email']);
+$infos->execute();
+$dado = $infos->fetch();
 ?>
 <!DOCTYPE html>
 <html>
 <head>
+	<title>Facebook</title>
+	<link
+		rel="stylesheet"
+		type="text/css"
+		href="assets/css/logado.css"
+	>
+	<link
+		rel="shortcut icon"
+		href="assets/images/logo.ico"
+		type="image/x-icon"
+	/>
+</head>
+<body>
+	<div
+		id="menu"
+	>
+		<img
+			src="assets/images/facebook.png"
+			id="branco"
+		/>
+		<form
+			style="float: left;width: 44%;"
+		>
+			<div
+				id="borda"
+			>
+				<input
+					placeholder="Pesquisar"
+					type="text"
+					name="pesquisar"
+					id="pesquisar"
+				/>
+				<button
+				id="botao">
+					<i
+						id="botaoi"
+					>
+					</i>
+				</button>
+			</div>
+		</form>
+		<div
+			style="float: left;margin-left: 140px;"
+			id="perfi"
+		>
+			<?php
+				echo '<img src="users/'.$dado[1].$dado[2].'/avatar/'.$dado[8].'" />';
+				echo '<p title='.$dado[1].'>'.$dado[1].'</p>';
+			?>
+		</div>
+		<div id='barra1'></div>
+		<div
+			style="
+				color: white;
+				position: relative;
+				width: 100px;
+				text-align: center;
+				left: 708px;
+				cursor: pointer;
+				top: -18px;
+				border-radius: 3px;
+				height: 28px;
+				line-height: 14px;
+			"
+			id="pag"
+		>
+			<p>Página Inicial</p>
+		</div>
+	</div>
+	<div>
+		<div
+			id="options"
+		>
+			<div
+				id="perfil"
+			>
+				<img
+					<?php echo 'src="users/'.$dado[1].$dado[2].'/avatar/'.$dado[8].'"'; ?>
+					id="perfilimage"
+				/>
+				<p>
+					<?php
+						echo $dado[1]." ".$dado[2];
+					?>
+				</p>
+			</div>
+			<br/>
+			<div
+				id="perfil"
+			>
+				<i 
+					id="feed"
+					style="background-position: -63px -1649px;" 
+				>
+				</i>
+				<p>
+					Feed de Notícias
+				</p>
+			</div>
+			<div
+				id="perfil"
+			>
+				<i 
+					id="feed"
+					style="background-position: -74px -1065px;" 
+				>
+				</i>
+				<p>
+					Messenger
+				</p>
+			</div>
+			<div
+				id="perfil"
+			>
+				<i 
+					id="feed"
+					style="background-position: -63px -1754px;"
+				>
+				</i>
+				<p>
+					Watch
+				</p>
+			</div>
+			<p
+				id="exp"
+			>
+				Explorar
+			</p>
+			<div
+				id="perfil"
+			>
+				<i 
+					id="feed"
+					style="background-position: -74px -1107px;"
+				>
+				</i>
+				<p>
+					Páginas
+				</p>
+			</div>
+
+			<div
+				id="perfil"
+			>
+				<i 
+					id="feed"
+					style="background-position: -74px -1002px;"
+				>
+				</i>
+				<p>
+					Grupos
+				</p>
+			</div>
+			<div
+				id="perfil"
+			>
+				<i 
+					id="feed"
+					style="background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yi/r/4xhBZzFIOU7.png)"
+				>
+				</i>
+				<p>
+					Eventos
+				</p>
+			</div>
+			<div
+				id="perfil"
+			>
+				<i 
+					id="feed"
+					style="background-position: -75px -1575px;"
+				>
+				</i>
+				<p>
+					Campanhas de arrecadação de fundos
+				</p>
+			</div>
+			<div
+				id="perfil"
+			>
+				<i 
+					id="feed"
+					style="background-position: -42px -1670px;"
+				>
+				</i>
+				<p>
+					Lembranças
+				</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<?php
+return;
+endif;
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
 	<title>Facebook - entre ou cadastre-se</title>
-	<link rel="stylesheet" type="text/css" href="assets/css/index.css">
-	<link rel="shortcut icon" href="assets/images/logo.ico" type="image/x-icon" />
+	<link
+		rel="stylesheet"
+		type="text/css"
+		href="assets/css/index.css">
+	<link
+		rel="shortcut icon"
+		href="assets/images/logo.ico"
+		type="image/x-icon"
+	/>
 </head>
 <body>
 
-	<div id="menu">
-		<div id="login">
-			<div id="form">
+	<div
+		id="menu"
+	>
+		<div
+			id="login"
+		>
+			<div
+				id="form"
+			>
 				<ul>
-					<form method="POST" action="backend/login.php">
-						<li style="margin-left: 12px !important;">
+					<form
+						method="POST"
+						action="backend/login.php"
+					>
+						<li
+							style="margin-left: 12px !important;"
+						>
 							Email ou telefone
 						</li>
-						<li style="margin-left: 117px !important;">
+						<li
+							style="margin-left: 117px !important;"
+						>
 							Senha
 						</li>
 						<br/>
-						<input type="text" name="emaill">
-						<input type="password" name="senhal">
-						<input type="submit" name="Entrar" placeholder="Entrar" value="Entrar" id="button">
-						<p id="esq">
+						<input
+							type="text"
+							name="emaill"
+						>
+						<input
+							type="password"
+							name="senhal"
+						>
+						<input
+							type="submit"
+							name="Entrar"
+							placeholder="Entrar"
+							value="Entrar"
+							id="button"
+						>
+						<p
+							id="esq"
+						>
 							Esqueceu a conta?
 						</p>
 					</form>
 				</ul>
 			</div>
 		</div>
-		<h1 id="titulo">
+		<h1
+			id="titulo"
+		>
 			Facebook
 		</h1>
 		<div

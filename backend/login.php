@@ -12,6 +12,7 @@ if(isset($_POST['emaill']) && !empty($_POST['emaill'])
 	if($existe->rowCount() > 0) {
 		$dados = $existe->fetch();
 		if($dados[4] == $senha) {
+			$_SESSION['email'] = $dados[3];
 			$_SESSION['logado'] = true;
 			header('Location: ../');
 		} else {
